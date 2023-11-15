@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from 'expo-font';
+
+import Colors from './Component/Colors'
+import Index from './Navigation/Index';
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+   const [loaded] = useFonts({
+        // Montserrat: require('./assets/fonts/Yatra-One.ttf'),
+        Pacifico: require('./assets/Fonts/Pacifico-Regular.ttf'),
+       
+    
+      });
+      if (!loaded) {
+        return null;
+      }
+ 
+
+  return(
+
+  <View  style={{backgroundColor:"orange", flex:1}}>
+    <StatusBar barStyle="light-content"/>
+    <Index />
+  </View>
+  )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+ 
 });
+
+
+
