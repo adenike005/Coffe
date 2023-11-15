@@ -30,8 +30,8 @@ const TabNavigator = () => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: Colors.white,
-        inactiveTintColor: Colors.primary,
+        activeTintColor: Colors.primary,
+        inactiveTintColor: Colors.white,
         showLabel: false, // Hide tab labels
         tabStyle: {
           backgroundColor: 'rgba(0, 0, 0, 0.8)',  

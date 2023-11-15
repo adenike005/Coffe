@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback, Image, TextInput, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../Component/Colors';
 import { BlurView } from 'expo-blur';
@@ -24,8 +24,15 @@ const Begin = ({ navigation }) => {
         <View style={styles.mainContent}>
           <View style={{marginTop: "15%", marginHorizontal: "6%"}}>
             <Text style={{color:Colors.white, fontSize: 25, fontFamily:"Regular", letterSpacing:2, marginBottom:"5%"}}>It's a Great Day for Coffee</Text>
-            <View style={{width: "100%", height: "25%", backgroundColor:Colors.primary, borderRadius: 10, display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
-
+            <View style={{width: "100%", height: "25%", backgroundColor:Colors.gray, borderRadius: 10, display:"flex", flexDirection:"row",  alignItems:"center", paddingHorizontal:"5%"}}>
+            <Icon name='search' size={18} color={Colors.white} />
+            <TextInput
+            placeholder='Find your coffee'
+            placeholderTextColor={Colors.white}
+            style={{
+              marginHorizontal:"5%"
+            }}
+            color={Colors.white}/>
             </View>
           </View>
         </View>
@@ -109,3 +116,4 @@ const styles = StyleSheet.create({
 });
 
 export default Begin;
+
