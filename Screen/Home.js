@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback, Image } from 'react-n
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../Component/Colors';
 import { BlurView } from 'expo-blur';
+import { Ionicons } from '@expo/vector-icons';
 
 const Home = ({ navigation }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -42,13 +43,15 @@ const Home = ({ navigation }) => {
             </View>
             
          <View style={{display:"flex", flexDirection:"row",marginBottom: 20 }}>
-         <Image source={require("../assets/Images/home.png")} style={{width: 20, height: 25}}/>
-         <Text style={{fontSize: 16, textAlign:"center", marginHorizontal: 20, fontFamily:"Pacifico"}}>Home</Text>
+         {/* <Image source={require("../assets/Images/home.png")} style={{width: 20, height: 25}}/> */}
+         <Icon name='home' size={30} color={Colors.white}/>
+         <Text style={{fontSize: 16, textAlign:"center", marginHorizontal: 20, fontFamily:"Pacifico", color:Colors.white}}>Home</Text>
          </View >
 
          <View style={{display:"flex", flexDirection:"row",marginBottom: 20 }}>
          <Image source={require("../assets/Images/about.png")} style={{width: 30, height: 30}}/>
-         <Text style={{fontSize: 16, textAlign:"center", marginHorizontal: 20, fontFamily:"Pacifico"}}>About</Text>
+        
+         <Text style={{fontSize: 16, textAlign:"center", marginHorizontal: 20, fontFamily:"Pacifico", color:Colors.white}}>About</Text>
          </View >
           
           
@@ -63,13 +66,9 @@ const Home = ({ navigation }) => {
         {/* Drawer Toggle Button with Icon */}
         <TouchableWithoutFeedback onPress={toggleDrawer}>
           <View style={styles.drawerToggleButton}>
-           <BlurView
-           style={{width: 40,
-           height: 40,
-           justifyContent:"center",
-           alignItems:"center"}}>
+          
            {isDrawerOpen ? (<Icon name='times' size={30} color="white" style={styles.closeButton} />) : (<Icon name='bars' size={30} color="white" />)}
-           </BlurView>
+           
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -96,7 +95,7 @@ const styles = StyleSheet.create({
     left: 0,
     width: "70%",
     height: '100%',
-    backgroundColor: "#fff",
+    backgroundColor: Colors.primary,
     padding: 20,
     zIndex: 6,
   },

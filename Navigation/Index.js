@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Colors from '../Component/Colors'
 import Welcome from "../Screen/Welcome";
 import Home from "../Screen/Home";
+import tabs from "../Component/tabs"
 
 const Stack = createStackNavigator();
 
@@ -16,7 +17,7 @@ const Index = () =>{
             }}>
               <Stack.Screen name='Welcome' component={Welcome} 
           />
-          <Stack.Screen name='Home' component={Home} 
+          <Stack.Screen name='Home' component={tabs} 
           />
          </Stack.Navigator>
         </NavigationContainer>
