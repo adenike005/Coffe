@@ -5,11 +5,14 @@ import { Ionicons } from '@expo/vector-icons';
 import Home from '../Screen/Home';
 import Cart from '../Screen/Cart';
 import Colors from '../Component/Colors';
+import { BlurView } from 'expo-blur';
+import { Text } from 'react-native';
 
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const iconSize = 18;
   return (
     <Tab.Navigator
     screenOptions={({ route }) => ({
@@ -23,15 +26,17 @@ const TabNavigator = () => {
           } 
 
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={iconSize} color={color} />;
         },
       })}
       tabBarOptions={{
         activeTintColor: Colors.white,
-        inactiveTintColor: Colors.dark,
+        inactiveTintColor: Colors.primary,
         showLabel: false, // Hide tab labels
         tabStyle: {
-            backgroundColor: Colors.primary, // Background color for each individual tab
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',  
+          // Background color for each individual tab
+         
           },        style: {
             borderTopColor: 'transparent', // This is to avoid a border on the top of the tab bar
           },
@@ -40,6 +45,9 @@ const TabNavigator = () => {
         
     
       }}
+
+
+      
     
 
       >

@@ -3,9 +3,8 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback, Image } from 'react-n
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../Component/Colors';
 import { BlurView } from 'expo-blur';
-import { Ionicons } from '@expo/vector-icons';
 
-const Home = ({ navigation }) => {
+const Begin = ({ navigation }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -19,74 +18,66 @@ const Home = ({ navigation }) => {
   };
 
   return (
-  
     <TouchableWithoutFeedback onPress={closeDrawer}>
-      <View style={{flex: 1, }}>
+      <View style={{ flex: 1 }}>
         {/* Main Content */}
         <View style={styles.mainContent}>
-          <Text>Main Content Goes Here</Text>
+          <View style={{marginTop: "15%", marginHorizontal: "6%"}}>
+            <Text style={{color:Colors.white, fontSize: 25, fontFamily:"Regular", letterSpacing:2, marginBottom:"5%"}}>It's a Great Day for Coffee</Text>
+            <View style={{width: "100%", height: "25%", backgroundColor:Colors.primary, borderRadius: 10, display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.notificationIcon}>
+          <Icon name='bell' size={18} color={Colors.white} />
         </View>
 
         {/* Drawer */}
         {isDrawerOpen && (
-          <View style={styles.drawer}>
-           <View style={{padding: 20,position:"relative" }}>
-           <View style={{
-              width: 150,
-              height: 150,
-              marginBottom: 30,
-            
-            }}>
-              <Image source={require("../assets/Images/Black.png")}
-              style={{width: "100%",
-              height:"100%"}}/>
+          <BlurView intensity={80} style={styles.drawer}>
+            <View style={{ padding: 20, position: 'relative' }}>
+              <View style={{
+                width: 150,
+                height: 150,
+                marginBottom: 30,
+              }}>
+                <Image source={require("../assets/Images/Black.png")}
+                  style={{ width: "100%", height: "100%" }} />
+              </View>
+
+              <View style={{ display: "flex", flexDirection: "row", marginBottom: 20 }}>
+                <Icon name='home' size={18} color={Colors.white} />
+                <Text style={{ fontSize: 13, textAlign: "center", marginHorizontal: 20, fontFamily: "Pacifico", color: Colors.white }}>Home</Text>
+              </View>
+
+              <View style={{ display: "flex", flexDirection: "row", marginBottom: 20 }}>
+                <Image source={require("../assets/Images/about.png")} style={{ width: 18, height: 18 }} />
+                <Text style={{ fontSize: 13, textAlign: "center", marginHorizontal: 20, fontFamily: "Pacifico", color: Colors.white }}>About</Text>
+              </View>
             </View>
-            
-         <View style={{display:"flex", flexDirection:"row",marginBottom: 20 }}>
-         {/* <Image source={require("../assets/Images/home.png")} style={{width: 20, height: 25}}/> */}
-         <Icon name='home' size={30} color={Colors.white}/>
-         <Text style={{fontSize: 16, textAlign:"center", marginHorizontal: 20, fontFamily:"Pacifico", color:Colors.white}}>Home</Text>
-         </View >
-
-         <View style={{display:"flex", flexDirection:"row",marginBottom: 20 }}>
-         <Image source={require("../assets/Images/about.png")} style={{width: 30, height: 30}}/>
-        
-         <Text style={{fontSize: 16, textAlign:"center", marginHorizontal: 20, fontFamily:"Pacifico", color:Colors.white}}>About</Text>
-         </View >
-          
-          
-        
-            
-          </View>
-
-          
-          </View>
+          </BlurView>
         )}
 
         {/* Drawer Toggle Button with Icon */}
         <TouchableWithoutFeedback onPress={toggleDrawer}>
           <View style={styles.drawerToggleButton}>
-          
-           {isDrawerOpen ? (<Icon name='times' size={30} color="white" style={styles.closeButton} />) : (<Icon name='bars' size={30} color="white" />)}
-           
+            {isDrawerOpen ? (<Icon name='times' size={30} color="white" style={styles.closeButton} />) : (<Icon name='bars' size={18} color="white" />)}
           </View>
         </TouchableWithoutFeedback>
       </View>
     </TouchableWithoutFeedback>
-   
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-   
   },
   mainContent: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: "#000",
+    backgroundColor: Colors.dark,
   },
   drawer: {
     elevation: 80,
@@ -95,9 +86,10 @@ const styles = StyleSheet.create({
     left: 0,
     width: "70%",
     height: '100%',
-    backgroundColor: Colors.primary,
+    // backgroundColor: Colors['dark-light'],
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',  
     padding: 20,
-    zIndex: 6,
+    zIndex: 20,
   },
   drawerToggleButton: {
     position: 'absolute',
@@ -108,6 +100,12 @@ const styles = StyleSheet.create({
   closeButton: {
     display: "none",
   },
+  notificationIcon: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    zIndex: 3,
+  },
 });
 
-export default Home;
+export default Begin;
