@@ -1,8 +1,8 @@
 import {NavigationContainer, DefaultTheme} from "@react-navigation/native"
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../Screen/HomeScreen';
 import Colors from '../Component/Colors'
 import Welcome from "../Screen/Welcome";
+import Home from "../Screen/Home";
 
 const Stack = createStackNavigator();
 
@@ -16,7 +16,7 @@ const Index = () =>{
             }}>
               <Stack.Screen name='Welcome' component={Welcome} 
           />
-          <Stack.Screen name='HomeScreen' component={HomeScreen} 
+          <Stack.Screen name='Home' component={Home} 
           />
          </Stack.Navigator>
         </NavigationContainer>

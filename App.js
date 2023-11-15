@@ -11,6 +11,9 @@ export default function App() {
    const [loaded] = useFonts({
         // Montserrat: require('./assets/fonts/Yatra-One.ttf'),
         Pacifico: require('./assets/Fonts/Pacifico-Regular.ttf'),
+        Light: require("./assets/Fonts/Barlow-Light.ttf"),
+        Regular: require("./assets/Fonts/Barlow-Regular.ttf"),
+
        
     
       });

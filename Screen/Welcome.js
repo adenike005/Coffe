@@ -40,7 +40,7 @@ const Welcome = ({navigation}) => {
           <Text style={styles.text}>Coffe Shop</Text>
          <View style={styles.bottomTextContainer}>
          <Text style={{color:"white", fontSize:10, fontWeight: 300, letterSpacing: 3}}>Feeling love? Take a slip of Coffe</Text>
-        <Button title="Get Started" onPress={() => navigation.navigate("HomeScreen")} />
+        <Button title="Get Started" onPress={() => navigation.navigate("Home")} />
          </View>
         </View>
       </ImageBackground>
