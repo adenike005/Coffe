@@ -12,7 +12,7 @@ import {
 
   
   const Categories = ({onChange }) => {
-    const [activeCategoryId, setActiveCategoryId] = useState(null);
+    const [activeCategoryId, setActiveCategoryId] = useState(categories[0]?.id || null)
   
     const handlePress = (id) => {
       setActiveCategoryId(id);

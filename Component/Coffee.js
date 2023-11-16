@@ -21,13 +21,15 @@ const Coffee = () => {
                   
                 >
                   <View style={styles.card}>
-                  
-                    <View style={{width: 100, height:100,}}>
-                    <Image source={item.image} style={{width: "100%", height:"100%"}}  />
+                  <BlurView intensity={90}  style={styles.card}>
+                    
+                  {/* <View style={{width: 100, height:100, borderRadius: 50,}}>
+                    <Image source={item.image} style={{width: "100%", height:"100%",}}  />
                     </View>
                    <View style={{height: 75,}}>
-                   <Text style={styles.cardTitle}>{item.name}</Text>
-                   </View>
+                   <Text style={{color:Colors.white, textAlign:"left"}}>{item.name}</Text>
+                   </View> */}
+                  </BlurView>
                     
                   
                   </View>
@@ -42,14 +44,16 @@ export default Coffee
 
 const styles = StyleSheet.create({
     card: {
-        width: 150,
+        width: 160,
         height: 180,
         marginHorizontal: 10,
         marginBottom: 20,
         borderRadius: 15,
-        elevation: 50,
         backgroundColor: Colors.dark,
-        alignItems:"center"
+        justifyContent:"center",
+        elevation: 50, 
+       
        
       },
+   
 })
