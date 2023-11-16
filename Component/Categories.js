@@ -23,6 +23,7 @@ import {
       <FlatList
         horizontal={true}
         data={categories}
+        
         keyExtractor={(item) => item.id}
         contentContainerStyle={{ marginVertical: 10}}
         renderItem={({ item }) => (
@@ -45,6 +46,7 @@ import {
                     width: '100%',
                   backgroundColor: Colors.primary,
                   marginTop: 5,
+                 
                 }}
               />
             )}
