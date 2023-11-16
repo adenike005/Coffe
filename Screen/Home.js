@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback, Image, TextInput, Scr
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Colors from '../Component/Colors';
 import { BlurView } from 'expo-blur';
+import Categories from '../Component/Categories';
 
 const Begin = ({ navigation }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -24,7 +25,7 @@ const Begin = ({ navigation }) => {
         <View style={styles.mainContent}>
           <View style={{marginTop: "15%", marginHorizontal: "6%"}}>
             <Text style={{color:Colors.white, fontSize: 25, fontFamily:"Regular", letterSpacing:2, marginBottom:"5%"}}>It's a Great Day for Coffee</Text>
-            <View style={{width: "100%", height: "25%", backgroundColor:Colors.gray, borderRadius: 10, display:"flex", flexDirection:"row",  alignItems:"center", paddingHorizontal:"5%"}}>
+            <View style={{width: "100%", height: "25%", backgroundColor:Colors.gray, borderRadius: 10, display:"flex", flexDirection:"row",  alignItems:"center", paddingHorizontal:"5%", }}>
             <Icon name='search' size={18} color={Colors.white} />
             <TextInput
             placeholder='Find your coffee'
@@ -34,6 +35,7 @@ const Begin = ({ navigation }) => {
             }}
             color={Colors.white}/>
             </View>
+            <Categories/>
           </View>
         </View>
 

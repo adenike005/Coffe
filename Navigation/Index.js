@@ -17,7 +17,7 @@ const Index = () =>{
             }}>
               <Stack.Screen name='Welcome' component={Welcome} 
           />
-          <Stack.Screen name='Home' component={tabs} 
+          <Stack.Screen name='Root' component={tabs} 
           />
          </Stack.Navigator>
         </NavigationContainer>
