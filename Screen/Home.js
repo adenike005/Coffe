@@ -42,7 +42,94 @@ const Begin = ({ navigation }) => {
             <Categories />
             </View>
           </View>
-          <Coffee/>
+          {/* <Coffee  /> */}
+             <FlatList
+      showsVerticalScrollIndicator={false}
+      numColumns={2}
+      data={coffees}
+      renderItem={({ item }) => (
+        <TouchableHighlight
+          underlayColor={Colors.dark}
+          // activeOpacity={0.9}
+          onPress={() => navigation.navigate("Description",  item )}
+          style={styles.cardTouchable}
+          
+        >
+          <View style={styles.card}>
+            <BlurView intensity={0} >
+              <View style={{ width: "100%", height: "50%" }}>
+                <Image
+                  source={item.image}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    resizeMode: "contain",
+                  }}
+                />
+              </View>
+              <View style={{ marginHorizontal: 5 }}>
+                <Text
+                  style={{
+                    color: Colors.white,
+                    textAlign: "left",
+                    fontSize: 18,
+                    fontFamily: "Regular",
+                    marginBottom: 5,
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.name}
+                </Text>
+                <Text
+                  style={{
+                    color: Colors.white,
+                    textAlign: "left",
+                    fontSize: 10,
+                    fontFamily: "Regular",
+                    marginBottom: 5,
+                  }}
+                >
+                  {item.included}
+                </Text>
+              </View>
+              <View
+                style={{
+                  marginHorizontal: 5,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 15,
+                    color: Colors.white,
+                    fontWeight: "bold",
+                  }}
+                >
+                  ${item.price}
+                </Text>
+                <View
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: 30,
+                    backgroundColor: Colors.primary,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Icon name="plus" size={15} color={Colors.white} 
+                  
+          />
+                </View>
+              </View>
+            </BlurView>
+          </View>
+        </TouchableHighlight>
+      )}
+    />
           
         </View>
 
@@ -56,7 +143,7 @@ const Begin = ({ navigation }) => {
             <View style={styles.drawerContent}>
               <Image source={require('../assets/Images/Black.png')} style={styles.drawerImage} />
               {drawerMenuItem('home', 'Home')}
-              {drawerMenuItem('about', 'About')}
+              {drawerMenuItem('info-circle', 'About')}
             </View>
           </BlurView>
         )}
@@ -97,7 +184,8 @@ const styles = StyleSheet.create({
   searchContainer: {
     width: '100%',
     height: 50,
-    backgroundColor: Colors.gray,
+    // backgroundColor: Colors.gray,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
     borderRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',
@@ -179,6 +267,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     fontFamily: 'Pacifico',
     color: Colors.white,
+  },
+  card: {
+    width: 160,
+    height: 180,
+    marginHorizontal: 10,
+    marginBottom: 20,
+    borderRadius: 15,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    // backgroundColor: Colors.dark,
+    justifyContent: "center",
+    elevation: 500,
   },
 });
 

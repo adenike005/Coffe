@@ -4,6 +4,7 @@ import Colors from '../Component/Colors'
 import Welcome from "../Screen/Welcome";
 import Home from "../Screen/Home";
 import tabs from "../Component/tabs"
+import Description from "../Screen/Description";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,8 @@ const Index = () =>{
               <Stack.Screen name='Welcome' component={Welcome} 
           />
           <Stack.Screen name='Root' component={tabs} 
+          />
+          <Stack.Screen name='Description' component={Description} 
           />
          </Stack.Navigator>
         </NavigationContainer>
