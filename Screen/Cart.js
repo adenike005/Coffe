@@ -1,20 +1,16 @@
-import React from 'react';
-import { View, Text, Image } from 'react-native';
-import CartScreen from './CartScreen';
+// Cart.js
 
-const Cart = ({ route, navigation}) => {
-  const item = route.params;
-  // const { } = route.params;
-// 
+const Cart = ({ route }) => {
+  const { item } = route.params;
+
   return (
     <View>
-    <Image source={item.image}/>
-  <Text>Added to Cart</Text>
-  <Text>{quantity} x {item.name}</Text>
-  <Text>Total Price: ${quantity * item.price}</Text>
-  {/* Add additional information as needed */}
-</View>
+      <Image source={item.image} />
+      <Text>Added to Cart</Text>
+      <Text>{cartItem.quantity} x {item.name}</Text>
+      <Text>Total Price: ${item.quantity * item.price}</Text>
+      {/* Add additional information as needed */}
+    </View>
   );
 };
-
 export default Cart;
