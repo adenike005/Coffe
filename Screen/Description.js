@@ -15,7 +15,22 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 const Description = ({ navigation, route }) => {
   const item = route.params;
   const [count, setCount] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
 
+  // const addToCart = () => {
+  //   // Navigate to the CartScreen
+  //   // Navigating to CartScreen
+  //   navigation.navigate("CartScreen", {
+  //     item: item,
+  //     // quantity: quantity,
+  //   });
+  // };
+
+  const handleAddToCart = () => {
+    addToCart({ ...item, quantity: count });
+    // Navigate to the Cart tab
+    navigation.navigate('Cart');
+  };
   const increment = () => {
     setCount(count + 1);
   };
@@ -24,6 +39,10 @@ const Description = ({ navigation, route }) => {
     if (count > 0) {
       setCount(count - 1);
     }
+  };
+
+  const toggleLike = () => {
+    setIsLiked(!isLiked);
   };
   return (
     <SafeAreaView style={{ backgroundColor: Colors.dark, flex: 1 }}>
@@ -73,34 +92,107 @@ const Description = ({ navigation, route }) => {
           alignItems: "center",
         }}
       >
-
         <View
-        style={{
+          style={{
             width: 130,
             height: 40,
             borderRadius: 20,
             backgroundColor: Colors.gray,
             justifyContent: "center",
             // alignItems: "center",
-
-        }}>
-            <TouchableOpacity
-            style={{display: "flex", justifyContent: "space-between", flexDirection: "row",padding:10}}>
-                <Icon name="add" size={18} color={Colors.white} onPress={increment}/>
-                <Text style={{color:Colors.white}}>{count}</Text>
-                <Icon name="remove" size={18} color={Colors.white} onPress={decrement}/>
-            </TouchableOpacity>
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexDirection: "row",
+              padding: 10,
+            }}
+          >
+            <Icon
+              name="add"
+              size={18}
+              color={Colors.white}
+              onPress={increment}
+            />
+            <Text style={{ color: Colors.white }}>{count}</Text>
+            <Icon
+              name="remove"
+              size={18}
+              color={Colors.white}
+              onPress={decrement}
+            />
+          </TouchableOpacity>
         </View>
-        
-        <Text style={{ fontSize: 16,  color: Colors.white }}>
-          ${item.price}
+
+        <Text style={{ fontSize: 16, color: Colors.white }}>${item.price}</Text>
+      </View>
+
+      <View
+        style={{ marginHorizontal: 20, marginTop: "10%", marginBottom: "5%" }}
+      >
+        <Text
+          style={{
+            color: Colors.white,
+            lineHeight: 26,
+            letterSpacing: 1,
+            fontFamily: "Regular",
+          }}
+        >
+          {item.description}
         </Text>
       </View>
 
-     <View
-     style={{marginHorizontal: 20, marginTop: "5%"}}>
-     <Text style={{color:Colors.white, lineHeight: 24, letterSpacing: 1}}>{item.description}</Text>
-     </View>
+      <View
+        style={{
+          marginTop: "5%",
+          marginHorizontal: 20,
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{
+            width: 130,
+            height: 40,
+            borderRadius: 20,
+            backgroundColor: Colors.gray,
+            justifyContent: "center",
+            // alignItems: "center",
+          }}
+        >
+          {/* <TouchableOpacity
+            style={{display: "flex", justifyContent: "center", flexDirection: "row",padding:10}}
+            onPress={addToCart}>
+               <Text style={{color:Colors.white}}>Add  to cart</Text>
+            </TouchableOpacity> */}
+
+          <TouchableOpacity
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "row",
+              padding: 10,
+            }}
+            onPress={handleAddToCart}
+          >
+            <Text style={{ color: Colors.white, textAlign: "center" }}>
+              Add to cart
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity onPress={toggleLike}>
+          {/* Heart icon that changes color based on 'isLiked' state */}
+          <Icon
+            name={isLiked ? "favorite" : "favorite-border"}
+            size={24}
+            color={isLiked ? Colors.primary : Colors.white}
+          />
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -116,3 +208,75 @@ const styles = StyleSheet.create({
   },
 });
 
+// Description.js
+// import React, { useState } from "react";
+// import { SafeAreaView, StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+// import Icon from "react-native-vector-icons/MaterialIcons";
+// import Colors from "../Component/Colors";
+
+// const Description = ({ navigation, route }) => {
+//   const item = route.params;
+//   const [count, setCount] = useState(0);
+//   const [isLiked, setIsLiked] = useState(false);
+
+//   const addToCart = () => {
+//     // Navigate to the CartScreen and pass item and quantity as parameters
+//     navigation.navigate('CartScreen', { item, quantity: count });
+//   };
+
+//   const increment = () => {
+//     setCount(count + 1);
+//   };
+
+//   const decrement = () => {
+//     if (count > 0) {
+//       setCount(count - 1);
+//     }
+//   };
+
+//   const toggleLike = () => {
+//     setIsLiked(!isLiked);
+//   };
+
+//   return (
+//     <SafeAreaView style={{ backgroundColor: Colors.dark, flex: 1 }}>
+//       {/* ... existing code ... */}
+
+//       <View
+//         style={{
+//           marginTop: "5%",
+//           marginHorizontal: 20,
+//           display: "flex",
+//           flexDirection: "row",
+//           justifyContent: "space-between",
+//           alignItems: "center",
+//         }}
+//       >
+//         <View
+//           style={{
+//             width: 130,
+//             height: 40,
+//             borderRadius: 20,
+//             backgroundColor: Colors.gray,
+//             justifyContent: "center",
+//           }}
+//         >
+//           <TouchableOpacity
+//             style={{
+//               display: "flex",
+//               justifyContent: "space-between",
+//               flexDirection: "row",
+//               padding: 10,
+//             }}
+//             onPress={addToCart}
+//           >
+//             <Text style={{ color: Colors.white }}>Add to cart</Text>
+//           </TouchableOpacity>
+//         </View>
+//         {/* ... existing code ... */}
+//       </View>
+//     </SafeAreaView>
+//   );
+// };
+
+// export default Description;

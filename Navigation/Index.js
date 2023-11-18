@@ -5,6 +5,7 @@ import Welcome from "../Screen/Welcome";
 import Home from "../Screen/Home";
 import tabs from "../Component/tabs"
 import Description from "../Screen/Description";
+import CartScreen from "../Screen/CartScreen";
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,8 @@ const Index = () =>{
           <Stack.Screen name='Root' component={tabs} 
           />
           <Stack.Screen name='Description' component={Description} 
+          />
+          <Stack.Screen name='CartScreen' component={CartScreen} 
           />
          </Stack.Navigator>
         </NavigationContainer>
