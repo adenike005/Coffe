@@ -190,6 +190,7 @@ const Description = ({ navigation, route }) => {
             name={isLiked ? "favorite" : "favorite-border"}
             size={24}
             color={isLiked ? Colors.primary : Colors.white}
+          
           />
         </TouchableOpacity>
       </View>
