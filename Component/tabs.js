@@ -23,32 +23,43 @@ const TabNavigator = () => {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Cart') {
             iconName = focused ? 'cart' : 'cart-outline';
-          } 
+          }
 
           // You can return any component that you like here!
           return <Ionicons name={iconName} size={iconSize} color={color} />;
         },
-      })}
-      tabBarOptions={{
+        tabBarOptions: {
+
         activeTintColor: Colors.primary,
         inactiveTintColor: Colors.white,
         showLabel: false, // Hide tab labels
         tabStyle: {
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',  
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
           // Background color for each individual tab
-         
+
           },        style: {
             borderTopColor: 'transparent', // This is to avoid a border on the top of the tab bar
           },
-  
-
+      }
         
-    
-      }}
+      })}
+      // tabBarOptions={{
+      //   activeTintColor: Colors.primary,
+      //   inactiveTintColor: Colors.white,
+      //   showLabel: false, // Hide tab labels
+      //   tabStyle: {
+      //     backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      //     // Background color for each individual tab
+
+      //     },        style: {
+      //       borderTopColor: 'transparent', // This is to avoid a border on the top of the tab bar
+      //     },
 
 
-      
-    
+
+      // }}
+
+
 
       >
       <Tab.Screen name="Home" component={Home}
