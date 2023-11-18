@@ -27,7 +27,7 @@ const Description = ({ navigation, route }) => {
   // };
 
   const handleAddToCart = () => {
-    addToCart({ ...item, quantity: count });
+    addToCart({ item, quantity: count });
     // Navigate to the Cart tab
     navigation.navigate('Cart');
   };
