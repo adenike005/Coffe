@@ -11,26 +11,14 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 
 import Colors from "../Component/Colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import coffees from "../Navigation/coffees";
 
 const Description = ({ navigation, route }) => {
   const item = route.params;
   const [count, setCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  const addToCart = () => {
-    // Navigate to the CartScreen
-    // Navigating to CartScreen
-    navigation.navigate("CartScreen", {
-      item: item,
-      // quantity: quantity,
-    });
-  };
 
-  // const handleAddToCart = () => {
-  //   addToCart({ item, quantity: count });
-  //   // Navigate to the Cart tab
-  //   navigation.navigate('CartScreen');
-  // };
   const increment = () => {
     setCount(count + 1);
   };
@@ -177,7 +165,8 @@ const Description = ({ navigation, route }) => {
               flexDirection: "row",
               padding: 10,
             }}
-            onPress={addToCart}
+            
+            onPress={() =>navigation.navigate("Cart", { item: item })}
           >
             <Text style={{ color: Colors.white, textAlign: "center" }}>
               Add to cart
