@@ -17,20 +17,20 @@ const Description = ({ navigation, route }) => {
   const [count, setCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
-  // const addToCart = () => {
-  //   // Navigate to the CartScreen
-  //   // Navigating to CartScreen
-  //   navigation.navigate("CartScreen", {
-  //     item: item,
-  //     // quantity: quantity,
-  //   });
-  // };
-
-  const handleAddToCart = () => {
-    addToCart({ item, quantity: count });
-    // Navigate to the Cart tab
-    navigation.navigate('Cart');
+  const addToCart = () => {
+    // Navigate to the CartScreen
+    // Navigating to CartScreen
+    navigation.navigate("CartScreen", {
+      item: item,
+      // quantity: quantity,
+    });
   };
+
+  // const handleAddToCart = () => {
+  //   addToCart({ item, quantity: count });
+  //   // Navigate to the Cart tab
+  //   navigation.navigate('CartScreen');
+  // };
   const increment = () => {
     setCount(count + 1);
   };
@@ -177,7 +177,7 @@ const Description = ({ navigation, route }) => {
               flexDirection: "row",
               padding: 10,
             }}
-            onPress={handleAddToCart}
+            onPress={addToCart}
           >
             <Text style={{ color: Colors.white, textAlign: "center" }}>
               Add to cart
