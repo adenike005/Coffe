@@ -6,4 +6,4 @@ const Colors = {
     grayblue : '#252A32',
     bluish : '#52555A'
   };
-  export default Colors;
+  export default Colors
