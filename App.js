@@ -9,6 +9,7 @@ import Welcome from './Screen/Welcome';
 import { useFonts } from 'expo-font';
 import Colors from './Navigation/Colors';
 import Home from './Screen/Home';
+import TabNavigator from './Navigation/TabNavigator';
 
 const Stack = createStackNavigator();
 
@@ -33,11 +34,11 @@ const App = () => {
         screenOptions={{
           headerShown: false
         }}>
-        <Stack.Screen name='Welcome' component={Welcome}/>
+        {/* <Stack.Screen name='Welcome' component={Welcome}/>
         <Stack.Screen name='Onboarding' component={Onboading}/> 
         <Stack.Screen name='Login' component={Login}/>
-        <Stack.Screen name='Registration' component={Registration}/>
-        <Stack.Screen name='Home' component={Home}/>
+        <Stack.Screen name='Registration' component={Registration}/> */}
+        <Stack.Screen name='Home' component={TabNavigator}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
