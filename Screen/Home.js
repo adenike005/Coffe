@@ -119,7 +119,8 @@ const Home = () => {
               if (activeCategoryId === null) {
                 return true;
               }
-              return coffee.categoryId === activeCategoryId;
+              // return coffee.categoryId === activeCategoryId;
+              return coffee.categoryId.includes(activeCategoryId);
             })
             .map((coffee) => (
               <View
