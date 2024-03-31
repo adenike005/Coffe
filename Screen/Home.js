@@ -26,7 +26,7 @@ const { width } = Dimensions.get("window");
 
 
 
-const Home = () => {
+const Home = ({navigation}) => {
   const text = 'Discover Your Perfect Cup of Coffee'
   const [activeCategoryId, setActiveCategoryId] = useState(null);
 
@@ -240,11 +240,16 @@ const Home = () => {
                         padding: SPACING / 2,
                         borderRadius: SPACING,
                       }}
+                      // Inside your component where you have the navigation setup
+                    //  onPress={() => navigation.navigate("DetailScreen", { coffeeData: Coffees })}
+                    onPress={() =>  navigation.navigate("DetailScreen", { coffee })}
+
                     >
                       <Ionicons
                         name="add"
                         size={SPACING * 2}
                         color={Colors.white}
+                       
                       />
                     </TouchableOpacity>
                   </View>
