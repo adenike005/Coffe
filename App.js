@@ -9,7 +9,7 @@ import Welcome from './Screen/Welcome';
 import { useFonts } from 'expo-font';
 import Colors from './Navigation/Colors';
 import Home from './Screen/Home';
-import TabNavigator from './Navigation/TabNavigator';
+import TabNavigator from './Navigation/TabNavigation';
 
 const Stack = createStackNavigator();
 
