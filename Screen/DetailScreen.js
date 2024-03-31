@@ -123,7 +123,7 @@ const DetailScreen = ({ route, navigation }) => {
                   padding: SPACING,
                   borderRadius: SPACING * 1.5,
                 }}
-                onPress={handleHeartPress}
+                onPress={handleLikeToggle}
               >
                 <Ionicons
                   name="heart"
