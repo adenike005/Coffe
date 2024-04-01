@@ -1,90 +1,105 @@
 import {
-    Dimensions,
-    ImageBackground,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-  } from "react-native";
-  import React, { useState, useEffect , useContext} from "react";
-  
-  import { Ionicons } from "@expo/vector-icons";
+  Dimensions,
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+
+import { Ionicons } from "@expo/vector-icons";
 import Colors from "../Navigation/Colors";
 import SPACING from "../Navigation/SPACING";
 import { BlurView } from "expo-blur";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useLikedCoffees } from "../Components/LikedCoffeesContext";
-  
-  const { height, width } = Dimensions.get("window");
-  
-  const sizes = ["S", "M", "L"];
+import { LikedCoffeesContext } from "../Components/LikedCoffeesContext";
+import Buttom from "../Navigation/Buttom";
+import { CartContext } from "../Component/CardContext";
+
+const { height, width } = Dimensions.get("window");
+
+const sizes = ["S", "M", "L"];
 
 const DetailScreen = ({ route, navigation }) => {
-    const { coffee } = route.params;
+  const { coffee } = route.params;
 
-    
-    // const [liked, setLiked] = useState(false); // State to track if the coffee is liked
+  const [count, setCount] = useState(0);
 
-    // const loadLikedStatus = async () => {
-    //     try {
-    //         const storedLiked = await AsyncStorage.getItem(`likedCoffee_${coffee.id}`);
-    //         if (storedLiked !== null) {
-    //             setLiked(JSON.parse(storedLiked));
-    //         }
-    //     } catch (error) {
-    //         console.error('Error loading liked status:', error);
-    //     }
-    // };
+  const increment = () => {
+    setCount(count + 1);
+  };
 
-    // //const [liked, setLiked] = useState(false); // State to track if the coffee is liked
+  const decrement = () => {
+    setCount(count - 1);
+  };
 
-    // useEffect(() => {
-    //     // Load liked status when the component mounts
-    //     loadLikedStatus();
-    // }, []);
+  const [liked, setLiked] = useState(false); // State to track if the coffee is liked
 
-    // // Function to handle heart icon press
-    // const handleHeartPress = async () => {
-    //     const updatedLiked = !liked; // Toggle liked state
-    //     setLiked(updatedLiked);
-
-    //     // Save the updated liked status asynchronously for this specific coffee item
-    //     try {
-    //         await AsyncStorage.setItem(`likedCoffee_${coffee.id}`, JSON.stringify(updatedLiked));
-    //     } catch (error) {
-    //         console.error('Error saving liked status:', error);
-    //     }
-
-    //     if (updatedLiked) {
-    //       navigation.navigate('Love', { likedCoffee: coffee });
-    //   }
-    // };
-
-
-    // console.log('Liked status:', liked); 
-
-
-
-    const { likedCoffees, addLikedCoffee, removeLikedCoffee } = useLikedCoffees();
-    const [liked, setLiked] = useState(false);
-  
-    const handleLikeToggle = () => {
-      if (liked) {
-        removeLikedCoffee(coffee.id);
-      } else {
-        addLikedCoffee(coffee);
+  const loadLikedStatus = async () => {
+    try {
+      const storedLiked = await AsyncStorage.getItem(
+        `likedCoffee_${coffee.id}`
+      );
+      if (storedLiked !== null) {
+        setLiked(JSON.parse(storedLiked));
       }
-      setLiked(!liked);
-    };
-    
-  
+    } catch (error) {
+      console.error("Error loading liked status:", error);
+    }
+  };
+
+
+  const { addToCart } = useContext(CartContext); // Access addToCart function from CartContext
+
+  const handleAddToCart = () => {
+    addToCart(coffee); // Add coffee item to cart
+  };
+
+  //const [liked, setLiked] = useState(false); // State to track if the coffee is liked
+
+  useEffect(() => {
+    // Load liked status when the component mounts
+    loadLikedStatus();
+  }, []);
+
+  // Function to handle heart icon press
+  const handleHeartPress = async () => {
+    const updatedLiked = !liked; // Toggle liked state
+    setLiked(updatedLiked);
+
+    // Save the updated liked status asynchronously for this specific coffee item
+    try {
+      await AsyncStorage.setItem(
+        `likedCoffee_${coffee.id}`,
+        JSON.stringify(updatedLiked)
+      );
+    } catch (error) {
+      console.error("Error saving liked status:", error);
+    }
+  };
+
+  // console.log('Liked status:', liked);
+
+  // const { likedCoffees, addLikedCoffee, removeLikedCoffee } = useLikedCoffees();
+  // const [liked, setLiked] = useState(false);
+
+  // const handleLikeToggle = () => {
+  //   if (liked) {
+  //     removeLikedCoffee(coffee.id);
+  //   } else {
+  //     addLikedCoffee(coffee);
+  //   }
+  //   setLiked(!liked);
+  // };
+
   return (
-    <>
+    <View style={{ flex: 1, backgroundColor: Colors.black, }}>
       <ScrollView>
         <SafeAreaView>
-        <ImageBackground
+          <ImageBackground
             source={coffee.image}
             style={{
               height: height / 2 + SPACING * 2,
@@ -109,7 +124,6 @@ const DetailScreen = ({ route, navigation }) => {
                   borderRadius: SPACING * 1.5,
                 }}
                 onPress={() => navigation.goBack()}
-
               >
                 <Ionicons
                   name="arrow-back"
@@ -123,12 +137,12 @@ const DetailScreen = ({ route, navigation }) => {
                   padding: SPACING,
                   borderRadius: SPACING * 1.5,
                 }}
-                onPress={handleLikeToggle}
+                onPress={handleHeartPress}
               >
                 <Ionicons
                   name="heart"
-                //   color={Colors.light}
-                color={liked ? Colors.light : Colors.orangebrown}
+                  // color={Colors.light}
+                  color={liked ? Colors.light : Colors.orangebrown}
                   size={SPACING * 2}
                 />
               </TouchableOpacity>
@@ -136,7 +150,7 @@ const DetailScreen = ({ route, navigation }) => {
 
             <View
               style={{
-                borderRadius: SPACING * 3,
+                // borderRadius: SPACING * 3,
                 overflow: "hidden",
               }}
             >
@@ -156,7 +170,7 @@ const DetailScreen = ({ route, navigation }) => {
                       color: Colors.white,
                       fontWeight: "900",
                       marginBottom: SPACING,
-                      fontFamily:"Medium",
+                      fontFamily: "Medium",
                     }}
                   >
                     {coffee.name}
@@ -167,7 +181,7 @@ const DetailScreen = ({ route, navigation }) => {
                       color: Colors["white-smoke"],
                       fontWeight: "300",
                       marginBottom: SPACING,
-                      fontFamily:"Light"
+                      fontFamily: "Light",
                     }}
                   >
                     {coffee.included}
@@ -273,88 +287,106 @@ const DetailScreen = ({ route, navigation }) => {
               </BlurView>
             </View>
           </ImageBackground>
-          {/* <View
-            style={{
-              padding: SPACING,
-              backgroundColor:Colors.black
-            }}
+
+          <SafeAreaView
+            style={{ paddingHorizontal: SPACING * 1.5, marginTop: SPACING }}
           >
-            <Text
-              style={{
-                color: Colors["white-smoke"],
-                fontSize: SPACING * 1.7,
-                marginBottom: SPACING,
-              }}
-            >
-              Description
-            </Text>
-            <Text numberOfLines={4} style={{ color: Colors.white, fontSize:SPACING * 1.5 }}>
-              {coffee.description}
-            </Text>
-            <View
-              style={{
-                marginVertical: SPACING * 2,
-              }}
-            >
-              <Text
-                style={{
-                  color: Colors["white-smoke"],
-                  fontSize: SPACING * 1.7,
-                  marginBottom: SPACING,
-                }}
-              >
-                Size
-              </Text>
+            <View style={{ width: "100%", height: "100%" }}>
               <View
                 style={{
+                  marginBottom: "3%",
+                  display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
-                {sizes.map((size, index) => (
-                  <TouchableOpacity
-                    onPress={() => setActiveSize(size)}
-                    key={index}
-                    style={[
-                      {
-                        borderWidth: 2,
-                        paddingVertical: SPACING / 2,
-                        borderRadius: SPACING,
-                        backgroundColor: Colors["dark-light"],
-                        width: width / 3 - SPACING * 2,
-                        alignItems: "center",
-                      },
-                      activeSize == size && {
-                        borderColor: Colors.primary,
-                        backgroundColor: Colors.dark,
-                      },
-                    ]}
-                  >
+                <TouchableOpacity
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    backgroundColor: Colors.orangebrown,
+                    padding: SPACING * 1.5,
+                    borderRadius: 10,
+                  }}
+                >
+                  <View>
                     <Text
-                      style={[
-                        {
-                          color: Colors["white-smoke"],
-                          fontSize: SPACING * 1.9,
-                        },
-                        activeSize === size && {
-                          color: Colors.primary,
-                        },
-                      ]}
+                      style={{
+                        color: Colors.white,
+                        fontSize: SPACING * 2,
+                        marginRight: "5%",
+                      }}
+                      onPress={increment}
                     >
-                      {size}
+                      +
                     </Text>
-                  </TouchableOpacity>
-                ))}
+                  </View>
+                  <View>
+                    <Text
+                      style={{
+                        color: Colors.white,
+                        fontSize: SPACING * 2,
+                        marginRight: "5%",
+                      }}
+                    >
+                      {count}
+                    </Text>
+                  </View>
+                  <View>
+                    <Text
+                      style={{
+                        color: Colors.white,
+                        fontSize: SPACING * 2,
+                        marginRight: "5%",
+                      }}
+                      onPress={decrement}
+                    >
+                      -
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+                <Text
+                  style={{
+                    color: Colors.white,
+                    fontSize: SPACING * 2,
+                    fontWeight: "900",
+                    fontFamily: "Medium",
+                    letterSpacing: 2,
+                    lineHeight: SPACING * 3,
+                  }}
+                >
+                  {" "}
+                  ${coffee.price}
+                </Text>
+              </View>
+              <Text
+                style={{
+                  color: Colors.white,
+                  fontSize: SPACING * 2,
+                  fontWeight: "400",
+                  fontFamily: "Regular",
+                  letterSpacing: 2,
+                  lineHeight: SPACING * 3,
+                }}
+              >
+                {" "}
+                {coffee.description}
+              </Text>
+
+              <View style={{ marginTop: "10%" }}>
+                <Buttom title='Add to cart' onPress={handleAddToCart}/>
               </View>
             </View>
-          </View> */}
+          </SafeAreaView>
         </SafeAreaView>
       </ScrollView>
-      
-    </>
-  )
-}
+    </View>
+  );
+};
 
-export default DetailScreen
+export default DetailScreen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

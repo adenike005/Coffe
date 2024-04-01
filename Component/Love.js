@@ -1,23 +1,18 @@
-// LoveScreen.js
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
-import React from 'react';
-import { View, Text } from 'react-native';
-import { useLikedCoffees } from '../Components/LikedCoffeesContext';
-
-const LoveScreen = () => {
-  const { likedCoffees } = useLikedCoffees();
-
+const Love = () => {
   return (
     <View>
-      <Text>Liked Coffees:</Text>
-      {likedCoffees.map(coffee => (
-        <Text key={coffee.id}>{coffee.name}</Text>
-      ))}
+      <Text>Love</Text>
     </View>
-  );
-};
+  )
+}
 
-export default LoveScreen;
+export default Love
+
+const styles = StyleSheet.create({})
+
 
 
 

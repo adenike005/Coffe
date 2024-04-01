@@ -1,15 +1,42 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import Colors from '../Navigation/Colors';
+// import React from 'react';
+// import { View, Text, FlatList } from 'react-native';
 
-const Vart = () => {
+// const CartPage = ({ route }) => {
+//   const { cart } = route.params;
+
+//   return (
+//     <View>
+//       <Text>Cart Page</Text>
+//       <FlatList
+//         data={cart}
+//         renderItem={({ item }) => (
+//           <View>
+//             <Text>{item.name} - ${item.price}</Text>
+//           </View>
+//         )}
+//         keyExtractor={item => item.id.toString()}
+//       />
+//     </View>
+//   );
+// };
+
+// export default CartPage;
+
+
+import React, { useContext } from 'react';
+import { View, Text } from 'react-native';
+import { CartContext } from './CardContext';
+
+const CartScreen = () => {
+  const { cartItems } = useContext(CartContext); // Access cartItems from CartContext
+
   return (
-    <View style={{flex:1, backgroundColor:Colors.black}}>
-      <Text>Vart</Text>
+    <View>
+      {cartItems.map((item, index) => (
+        <Text key={index}>{item.name}</Text>
+      ))}
     </View>
-  )
-}
+  );
+};
 
-export default Vart
-
-const styles = StyleSheet.create({})
+export default CartScreen;

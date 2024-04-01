@@ -12,6 +12,7 @@ import Home from './Screen/Home';
 import TabNavigator from './Navigation/TabNavigation';
 import DetailScreen from './Screen/DetailScreen';
 import { LikedCoffeesProvider } from './Components/LikedCoffeesContext';
+import { CartProvider } from './Component/CardContext';
 
 const Stack = createStackNavigator();
 
@@ -32,7 +33,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={Colors.black} barStyle="light-content" />
-      <LikedCoffeesProvider>
+      <CartProvider>
       <Stack.Navigator 
         screenOptions={{
           headerShown: false
@@ -46,7 +47,7 @@ const App = () => {
       <Stack.Screen name='DetailScreen' component={DetailScreen}/>
       
       </Stack.Navigator>
-      </LikedCoffeesProvider>
+      </CartProvider>
     </NavigationContainer>
   );
 }
