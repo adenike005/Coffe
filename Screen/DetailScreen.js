@@ -33,8 +33,23 @@ const DetailScreen = ({ route, navigation }) => {
   };
 
   const decrement = () => {
-    setCount(count - 1);
+    if (count > 0) {
+      setCount(count - 1);
+    }
   };
+
+  const { addToCart } = useContext(CartContext); // Access addToCart function from CartContext
+
+  // const handleAddToCart = () => {
+  //   const itemToAdd = { ...coffee, quantity: count }; // Include quantity in the item
+  //   addToCart(itemToAdd); // Add coffee item to cart
+  // };
+
+
+  const handleAddToCart = () => {
+    addToCart(coffee, count); // Add coffee item to cart with specified quantity
+  };
+  
 
   const [liked, setLiked] = useState(false); // State to track if the coffee is liked
 
@@ -50,15 +65,6 @@ const DetailScreen = ({ route, navigation }) => {
       console.error("Error loading liked status:", error);
     }
   };
-
-
-  const { addToCart } = useContext(CartContext); // Access addToCart function from CartContext
-
-  const handleAddToCart = () => {
-    addToCart(coffee); // Add coffee item to cart
-  };
-
-  //const [liked, setLiked] = useState(false); // State to track if the coffee is liked
 
   useEffect(() => {
     // Load liked status when the component mounts
@@ -81,34 +87,16 @@ const DetailScreen = ({ route, navigation }) => {
     }
   };
 
-  // console.log('Liked status:', liked);
-
-  // const { likedCoffees, addLikedCoffee, removeLikedCoffee } = useLikedCoffees();
-  // const [liked, setLiked] = useState(false);
-
-  // const handleLikeToggle = () => {
-  //   if (liked) {
-  //     removeLikedCoffee(coffee.id);
-  //   } else {
-  //     addLikedCoffee(coffee);
-  //   }
-  //   setLiked(!liked);
-  // };
-
   return (
-    <View style={{ flex: 1, backgroundColor: Colors.black, }}>
+    <View style={{ flex: 1, backgroundColor: Colors.black }}>
       <ScrollView>
         <SafeAreaView>
           <ImageBackground
             source={coffee.image}
             style={{
               height: height / 2 + SPACING * 2,
-
               justifyContent: "space-between",
             }}
-            // imageStyle={{
-            //   borderRadius: SPACING * 3,
-            // }}
           >
             <View
               style={{
@@ -141,155 +129,59 @@ const DetailScreen = ({ route, navigation }) => {
               >
                 <Ionicons
                   name="heart"
-                  // color={Colors.light}
                   color={liked ? Colors.light : Colors.orangebrown}
                   size={SPACING * 2}
                 />
               </TouchableOpacity>
             </View>
 
-            <View
-              style={{
-                // borderRadius: SPACING * 3,
-                overflow: "hidden",
-              }}
-            >
+            <View>
               <BlurView
                 intensity={80}
                 tint="dark"
-                style={{
-                  padding: SPACING * 2,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
+                style={{ padding: SPACING * 2 }}
               >
-                <View>
-                  <Text
-                    style={{
-                      fontSize: SPACING * 2,
-                      color: Colors.white,
-                      fontWeight: "900",
-                      marginBottom: SPACING,
-                      fontFamily: "Medium",
-                    }}
-                  >
-                    {coffee.name}
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: SPACING * 1.8,
-                      color: Colors["white-smoke"],
-                      fontWeight: "300",
-                      marginBottom: SPACING,
-                      fontFamily: "Light",
-                    }}
-                  >
-                    {coffee.included}
-                  </Text>
-                  <View style={{ flexDirection: "row", marginTop: SPACING }}>
-                    <Ionicons
-                      name="star"
-                      size={SPACING * 1.5}
-                      color={Colors.primary}
-                    />
-                    <Text
-                      style={{
-                        color: Colors.white,
-                        marginLeft: SPACING,
-                      }}
-                    >
-                      {coffee.rating}
-                    </Text>
-                  </View>
-                </View>
-                <View
+                <Text
                   style={{
-                    width: "35%",
-                    justifyContent: "space-between",
+                    fontSize: SPACING * 2,
+                    color: Colors.white,
+                    fontWeight: "900",
+                    marginBottom: SPACING,
+                    fontFamily: "Medium",
                   }}
                 >
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <View
-                      style={{
-                        padding: SPACING / 2,
-                        width: SPACING * 5,
-                        height: SPACING * 5,
-                        backgroundColor: Colors.dark,
-                        borderRadius: SPACING,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Ionicons
-                        name="cafe"
-                        size={SPACING * 2}
-                        color={Colors.primary}
-                      />
-                      <Text
-                        style={{
-                          color: Colors["white-smoke"],
-                          fontSize: SPACING,
-                        }}
-                      >
-                        Coffee
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        padding: SPACING / 2,
-                        width: SPACING * 5,
-                        height: SPACING * 5,
-                        backgroundColor: Colors.dark,
-                        borderRadius: SPACING,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Ionicons
-                        name="water"
-                        size={SPACING * 2}
-                        color={Colors.primary}
-                      />
-                      <Text
-                        style={{
-                          color: Colors["white-smoke"],
-                          fontSize: SPACING,
-                        }}
-                      >
-                        Milk
-                      </Text>
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      backgroundColor: Colors.dark,
-                      padding: SPACING / 2,
-                      borderRadius: SPACING / 2,
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: Colors["white-smoke"],
-                        fontSize: SPACING * 1.3,
-                      }}
-                    >
-                      Medium roasted
-                    </Text>
-                  </View>
+                  {coffee.name}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: SPACING * 1.8,
+                    color: Colors["white-smoke"],
+                    fontWeight: "300",
+                    marginBottom: SPACING,
+                    fontFamily: "Light",
+                  }}
+                >
+                  {coffee.included}
+                </Text>
+                <View style={{ flexDirection: "row", marginTop: SPACING }}>
+                  <Ionicons
+                    name="star"
+                    size={SPACING * 1.5}
+                    color={Colors.primary}
+                  />
+                  <Text style={{ color: Colors.white, marginLeft: SPACING }}>
+                    {coffee.rating}
+                  </Text>
                 </View>
               </BlurView>
             </View>
           </ImageBackground>
 
           <SafeAreaView
-            style={{ paddingHorizontal: SPACING * 1.5, marginTop: SPACING }}
+            style={{
+              paddingHorizontal: SPACING * 1.5,
+              marginTop: SPACING,
+            }}
           >
             <View style={{ width: "100%", height: "100%" }}>
               <View
@@ -390,3 +282,4 @@ const DetailScreen = ({ route, navigation }) => {
 export default DetailScreen;
 
 const styles = StyleSheet.create({});
+
