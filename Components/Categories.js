@@ -26,7 +26,7 @@ const Categoriess = ({ onChange }) => {
         >
           <Text
             style={[
-              { color: Colors.secondary, fontSize: SPACING * 2 },
+              { color: Colors.secondary, fontSize: SPACING * 2 , fontWeight:"500", fontFamily:"Light"},
               activeCategoryId === item.id && { color: Colors.primary },
             ]}
           >

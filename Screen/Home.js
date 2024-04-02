@@ -62,7 +62,7 @@ const Home = ({navigation}) => {
               <Ionicons
                 name="menu"
                 size={SPACING * 2.5}
-                color={Colors.secondary}
+                color={Colors.orangebrown}
               />
             </BlurView>
           </TouchableOpacity>

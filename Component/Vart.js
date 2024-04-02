@@ -106,17 +106,17 @@ const CartScreen = () => {
     <View style={{ flex: 1, backgroundColor: Colors.black }}>
       <ScrollView style={{ flex: 1 }}>
         {cartItems.length === 0 ? (
-          <Text style={{ color: Colors.white, textAlign: 'center', marginTop: '50%', fontWeight: 'bold', fontSize: SPACING * 2 }}>No items in the cart. Add items to your cart!</Text>
+          <Text style={{ color: Colors.red, textAlign: 'center', marginTop: '50%', fontWeight: 'bold', fontSize: SPACING * 2 }}>No items in the cart. Add items to your cart!</Text>
         ) : (
           <>
             {cartItems.map((item, index) => (
-              <View key={index} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, paddingHorizontal: SPACING, marginVertical: 5 }}>
+              <View key={index} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, paddingHorizontal: SPACING, marginVertical: '3%' }}>
                 <Image source={item.image} style={{ width: 60, height: 60, marginRight: 10, borderRadius: SPACING }} />
                 <Text style={{ color: Colors.white, flex: 1, fontWeight: 'bold' }}>{item.name}</Text>
                 <Text style={{ color: Colors.white, flex: 1, fontWeight: 'bold' }}>{item.quantity}</Text>
                 <Text style={{ color: Colors.white, flex: 1, fontWeight: 'bold' }}>${calculateTotalPrice(item).toFixed(2)}</Text>
                 <TouchableOpacity onPress={() => handleDelete(item.id)}>
-                  <EvilIcons name="trash" size={20} color={Colors.red} />
+                  <EvilIcons name="trash" size={24} color={Colors.red} />
                 </TouchableOpacity>
               </View>
             ))}
@@ -131,8 +131,8 @@ const CartScreen = () => {
             <Text style={{ color: Colors.white, marginVertical: '3%', fontWeight: 'bold' }}>${totalPrice.toFixed(2)}</Text>
           </View>
 
-          <TouchableOpacity style={{ width: '100%', padding: SPACING * 1.5, backgroundColor: Colors.orangebrown, alignItems: 'center', borderRadius: SPACING }}>
-            <Text style={{ color: Colors.white, fontWeight: 'bold' }}>Checkout</Text>
+          <TouchableOpacity style={{ width: '100%', padding: SPACING * 2, backgroundColor: Colors.orangebrown, alignItems: 'center', borderRadius: SPACING , marginBottom:"5%"}}>
+            <Text style={{ color: Colors.white, fontWeight: 'bold', fontSize:20 }}>Checkout</Text>
           </TouchableOpacity>
         </View>
       )}

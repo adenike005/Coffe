@@ -103,6 +103,7 @@ const DetailScreen = ({ route, navigation }) => {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 padding: SPACING * 2,
+                marginTop:"5%"
               }}
             >
               <TouchableOpacity
