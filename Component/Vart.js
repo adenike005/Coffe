@@ -75,7 +75,7 @@ import { EvilIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SPACING from '../Navigation/SPACING';
 
-const CartScreen = () => {
+const CartScreen = ({navigation}) => {
   const { cartItems, removeFromCart } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -102,6 +102,8 @@ const CartScreen = () => {
     }
   };
 
+  
+
   return (
     <View style={{ flex: 1, backgroundColor: Colors.black }}>
       <ScrollView style={{ flex: 1 }}>
@@ -110,7 +112,7 @@ const CartScreen = () => {
         ) : (
           <>
             {cartItems.map((item, index) => (
-              <View key={index} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, paddingHorizontal: SPACING, marginVertical: '3%' }}>
+              <View key={index} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, paddingHorizontal: SPACING, marginVertical: '10%' }}>
                 <Image source={item.image} style={{ width: 60, height: 60, marginRight: 10, borderRadius: SPACING }} />
                 <Text style={{ color: Colors.white, flex: 1, fontWeight: 'bold' }}>{item.name}</Text>
                 <Text style={{ color: Colors.white, flex: 1, fontWeight: 'bold' }}>{item.quantity}</Text>
@@ -131,8 +133,8 @@ const CartScreen = () => {
             <Text style={{ color: Colors.white, marginVertical: '3%', fontWeight: 'bold' }}>${totalPrice.toFixed(2)}</Text>
           </View>
 
-          <TouchableOpacity style={{ width: '100%', padding: SPACING * 2, backgroundColor: Colors.orangebrown, alignItems: 'center', borderRadius: SPACING , marginBottom:"5%"}}>
-            <Text style={{ color: Colors.white, fontWeight: 'bold', fontSize:20 }}>Checkout</Text>
+          <TouchableOpacity style={{ width: '100%', padding: SPACING * 2, backgroundColor: Colors.orangebrown, alignItems: 'center', borderRadius: SPACING , marginBottom:"5%"}} onPress={() => navigation.navigate("Checkout")}>
+            <Text style={{ color: Colors.white, fontWeight: 'bold', fontSize:20 }} >Checkout</Text>
           </TouchableOpacity>
         </View>
       )}

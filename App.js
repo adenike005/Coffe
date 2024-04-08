@@ -78,6 +78,7 @@ import TabNavigator from './Navigation/TabNavigation';
 import DetailScreen from './Screen/DetailScreen';
 import { LikedCoffeesProvider } from './Components/LikedCoffeesContext';
 import { CartProvider } from './Component/CardContext';
+import Checkout from './Components/Checkout';
 
 const Stack = createStackNavigator();
 
@@ -111,6 +112,7 @@ const App = () => {
          <Stack.Screen name='Home' component={TabNavigator}/>
    
       <Stack.Screen name='DetailScreen' component={DetailScreen}/>
+      <Stack.Screen name='Checkout' component={Checkout}/>
         </Stack.Navigator>
      </CartProvider>
    </NavigationContainer>
